@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 119
+exclude =
+    .git,
+    venv,
+    __pycache__,
+    migrations,
+    .tox
+per-file-ignores =
+    # Allow star imports in settings
+    config/settings/*.py: F401, F403
