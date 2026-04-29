@@ -81,6 +81,27 @@ python manage.py runserver
 API disponible en: `http://localhost:8000/api/v1/`  
 Admin panel: `http://localhost:8000/admin/`
 
+## Ejecución con Docker
+
+```bash
+# Construir imagen Docker
+docker build -t django-shopping-list .
+
+# Ejecutar contenedor Docker
+docker run --rm -p 8000:8000 \
+  -e SECRET_KEY=change-me-in-production \
+  -e DJANGO_SETTINGS_MODULE=config.settings.development \
+  django-shopping-list
+```
+
+O con Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+La API quedará accesible en `http://localhost:8000/api/v1/`.
+
 ---
 
 ## Tests
