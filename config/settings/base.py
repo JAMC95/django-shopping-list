@@ -78,12 +78,26 @@ WSGI_APPLICATION = "config.wsgi.application"
 # ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+_db_engine = config("DB_ENGINE", default="django.db.backends.sqlite3")
+
+if _db_engine == "django.db.backends.sqlite3":
+    DATABASES = {
+        "default": {
+            "ENGINE": _db_engine,
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": _db_engine,
+            "NAME": config("DB_NAME", default="shopping"),
+            "USER": config("DB_USER", default="postgres"),
+            "PASSWORD": config("DB_PASSWORD", default="postgres"),
+            "HOST": config("DB_HOST", default="localhost"),
+            "PORT": config("DB_PORT", default="5432"),
+        }
+    }
 
 # ---------------------------------------------------------------------------
 # Password validation
