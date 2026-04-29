@@ -2,10 +2,14 @@
 TDD tests for the repository layer.
 Testing concrete Django ORM repositories with real DB (pytest-django).
 """
+
 import pytest
 from django.core.exceptions import ObjectDoesNotExist
 
-from shopping.repositories.shopping_repository import DjangoItemRepository, DjangoShoppingListRepository
+from shopping.repositories.shopping_repository import (
+    DjangoItemRepository,
+    DjangoShoppingListRepository,
+)
 
 from .factories import ItemFactory, ShoppingListFactory
 

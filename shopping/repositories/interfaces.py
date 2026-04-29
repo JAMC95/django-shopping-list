@@ -4,6 +4,7 @@ Abstract interfaces for the repository layer (Dependency Inversion Principle).
 By depending on abstractions, services can be tested with mock repositories
 without touching the database.
 """
+
 from abc import ABC, abstractmethod
 
 
@@ -50,7 +51,14 @@ class AbstractItemRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def create(self, list_id: int, name: str, quantity: int = 1, unit: str = "", notes: str = "") -> object:
+    def create(
+        self,
+        list_id: int,
+        name: str,
+        quantity: int = 1,
+        unit: str = "",
+        notes: str = "",
+    ) -> object:
         """Persist a new item and return it."""
         raise NotImplementedError
 

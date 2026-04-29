@@ -4,6 +4,7 @@ Abstract service interfaces (Interface Segregation Principle).
 Services orchestrate business logic and depend only on repository abstractions,
 making them fully testable without a real database.
 """
+
 from abc import ABC, abstractmethod
 
 
@@ -47,7 +48,14 @@ class AbstractItemService(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def add_item(self, list_id: int, name: str, quantity: int = 1, unit: str = "", notes: str = "") -> object:
+    def add_item(
+        self,
+        list_id: int,
+        name: str,
+        quantity: int = 1,
+        unit: str = "",
+        notes: str = "",
+    ) -> object:
         raise NotImplementedError
 
     @abstractmethod

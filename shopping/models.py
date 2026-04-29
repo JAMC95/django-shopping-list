@@ -5,6 +5,7 @@ Design follows:
 - Single Responsibility: each model has one clear responsibility.
 - Open/Closed: models can be extended without modification.
 """
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -52,8 +53,7 @@ class Item(models.Model):
     name = models.CharField(_("name"), max_length=255)
     quantity = models.PositiveIntegerField(_("quantity"), default=1)
     unit = models.CharField(
-        _("unit"), max_length=50, blank=True,
-        help_text=_("e.g. kg, litres, units")
+        _("unit"), max_length=50, blank=True, help_text=_("e.g. kg, litres, units")
     )
     is_checked = models.BooleanField(_("checked"), default=False)
     notes = models.TextField(_("notes"), blank=True)

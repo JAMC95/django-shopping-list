@@ -11,7 +11,13 @@ class ItemInline(admin.TabularInline):
 
 @admin.register(ShoppingList)
 class ShoppingListAdmin(admin.ModelAdmin):
-    list_display = ("name", "is_completed", "total_items", "checked_items", "created_at")
+    list_display = (
+        "name",
+        "is_completed",
+        "total_items",
+        "checked_items",
+        "created_at",
+    )
     list_filter = ("is_completed", "created_at")
     search_fields = ("name", "description")
     inlines = [ItemInline]
@@ -25,6 +31,13 @@ class ShoppingListAdmin(admin.ModelAdmin):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ("name", "shopping_list", "quantity", "unit", "is_checked", "created_at")
+    list_display = (
+        "name",
+        "shopping_list",
+        "quantity",
+        "unit",
+        "is_checked",
+        "created_at",
+    )
     list_filter = ("is_checked", "shopping_list")
     search_fields = ("name", "notes")

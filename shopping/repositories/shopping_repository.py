@@ -5,6 +5,7 @@ These are the concrete classes that actually talk to the database.
 Swapping the database backend only requires a new implementation of the
 abstract interface — no changes to services or views (Open/Closed Principle).
 """
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from ..models import Item, ShoppingList
@@ -52,7 +53,14 @@ class DjangoItemRepository(AbstractItemRepository):
         except Item.DoesNotExist:
             raise ObjectDoesNotExist(f"Item with id={item_id} does not exist.")
 
-    def create(self, list_id: int, name: str, quantity: int = 1, unit: str = "", notes: str = "") -> Item:
+    def create(
+        self,
+        list_id: int,
+        name: str,
+        quantity: int = 1,
+        unit: str = "",
+        notes: str = "",
+    ) -> Item:
         return Item.objects.create(
             shopping_list_id=list_id,
             name=name,

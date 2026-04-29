@@ -3,6 +3,7 @@ TDD unit tests for the service layer.
 These tests use mock/stub repositories so NO database is required.
 This demonstrates the power of the Dependency Inversion Principle.
 """
+
 from unittest.mock import MagicMock
 
 import pytest
@@ -120,7 +121,13 @@ class FakeItemRepository:
         return self._store[item_id]
 
     def create(self, list_id, name, quantity=1, unit="", notes=""):
-        obj = self._make_item(shopping_list_id=list_id, name=name, quantity=quantity, unit=unit, notes=notes)
+        obj = self._make_item(
+            shopping_list_id=list_id,
+            name=name,
+            quantity=quantity,
+            unit=unit,
+            notes=notes,
+        )
         self._store[obj.id] = obj
         return obj
 
@@ -149,7 +156,9 @@ class TestItemService:
         self.shopping_list = self.list_repo.create("Mi lista")
 
     def test_add_item_valid(self):
-        item = self.service.add_item(self.shopping_list.id, "Manzanas", quantity=3, unit="kg")
+        item = self.service.add_item(
+            self.shopping_list.id, "Manzanas", quantity=3, unit="kg"
+        )
         assert item.name == "Manzanas"
         assert item.quantity == 3
 

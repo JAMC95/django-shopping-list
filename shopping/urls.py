@@ -2,18 +2,23 @@
 URL routing for the shopping app.
 Uses nested routes: /api/v1/lists/{list_pk}/items/
 """
+
 from django.urls import path
 
 from .views import ItemViewSet, ShoppingListViewSet
 
 # Shopping list routes
 list_list = ShoppingListViewSet.as_view({"get": "list", "post": "create"})
-list_detail = ShoppingListViewSet.as_view({"get": "retrieve", "put": "update", "delete": "destroy"})
+list_detail = ShoppingListViewSet.as_view(
+    {"get": "retrieve", "put": "update", "delete": "destroy"}
+)
 list_complete = ShoppingListViewSet.as_view({"post": "complete"})
 
 # Item routes (nested under a list)
 item_list = ItemViewSet.as_view({"get": "list", "post": "create"})
-item_detail = ItemViewSet.as_view({"get": "retrieve", "put": "update", "delete": "destroy"})
+item_detail = ItemViewSet.as_view(
+    {"get": "retrieve", "put": "update", "delete": "destroy"}
+)
 item_toggle = ItemViewSet.as_view({"post": "toggle"})
 
 urlpatterns = [

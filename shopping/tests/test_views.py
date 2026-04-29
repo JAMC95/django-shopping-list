@@ -2,6 +2,7 @@
 TDD integration tests for the API views.
 Uses Django test client + real database (pytest-django).
 """
+
 import pytest
 from rest_framework.test import APIClient
 
@@ -53,7 +54,9 @@ class TestShoppingListAPI:
 
     def test_update_list(self, api_client):
         sl = ShoppingListFactory(name="Original")
-        response = api_client.put(f"{self.BASE_URL}{sl.pk}/", data={"name": "Actualizada"}, format="json")
+        response = api_client.put(
+            f"{self.BASE_URL}{sl.pk}/", data={"name": "Actualizada"}, format="json"
+        )
         assert response.status_code == 200
         assert response.data["name"] == "Actualizada"
 

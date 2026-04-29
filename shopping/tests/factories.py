@@ -2,6 +2,7 @@
 Factory Boy factories for test data generation.
 Following TDD best practices: factories make tests readable and DRY.
 """
+
 import factory
 
 from shopping.models import Item, ShoppingList

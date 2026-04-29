@@ -5,13 +5,21 @@ Each ViewSet delegates all business logic to the service layer,
 keeping views thin (Single Responsibility Principle).
 Dependency injection is used for the service so views are testable.
 """
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .repositories.shopping_repository import DjangoItemRepository, DjangoShoppingListRepository
-from .serializers import ItemSerializer, ShoppingListCreateSerializer, ShoppingListSerializer
+from .repositories.shopping_repository import (
+    DjangoItemRepository,
+    DjangoShoppingListRepository,
+)
+from .serializers import (
+    ItemSerializer,
+    ShoppingListCreateSerializer,
+    ShoppingListSerializer,
+)
 from .services.shopping_service import ItemService, ShoppingListService
 
 
@@ -50,7 +58,9 @@ class ShoppingListViewSet(viewsets.ViewSet):
             shopping_list = service.create_list(**serializer.validated_data)
         except ValidationError as exc:
             return Response({"detail": exc.message}, status=status.HTTP_400_BAD_REQUEST)
-        return Response(ShoppingListSerializer(shopping_list).data, status=status.HTTP_201_CREATED)
+        return Response(
+            ShoppingListSerializer(shopping_list).data, status=status.HTTP_201_CREATED
+        )
 
     def retrieve(self, request, pk=None):
         service = _get_list_service()
@@ -108,7 +118,9 @@ class ItemViewSet(viewsets.ViewSet):
         try:
             items = service.get_items_for_list(int(list_pk))
         except ObjectDoesNotExist:
-            return Response({"detail": "Shopping list not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Shopping list not found."}, status=status.HTTP_404_NOT_FOUND
+            )
         return Response(ItemSerializer(items, many=True).data)
 
     def create(self, request, list_pk=None):

@@ -5,9 +5,13 @@ Services contain all business rules and depend only on the repository
 interfaces (Dependency Inversion Principle). This makes them fully
 unit-testable with fake/mock repositories.
 """
+
 from django.core.exceptions import ValidationError
 
-from ..repositories.interfaces import AbstractItemRepository, AbstractShoppingListRepository
+from ..repositories.interfaces import (
+    AbstractItemRepository,
+    AbstractShoppingListRepository,
+)
 from .interfaces import AbstractItemService, AbstractShoppingListService
 
 
@@ -63,7 +67,14 @@ class ItemService(AbstractItemService):
     def get_item(self, item_id: int):
         return self._item_repository.get_by_id(item_id)
 
-    def add_item(self, list_id: int, name: str, quantity: int = 1, unit: str = "", notes: str = "") -> object:
+    def add_item(
+        self,
+        list_id: int,
+        name: str,
+        quantity: int = 1,
+        unit: str = "",
+        notes: str = "",
+    ) -> object:
         name = name.strip()
         if not name:
             raise ValidationError("Item must have a name.")

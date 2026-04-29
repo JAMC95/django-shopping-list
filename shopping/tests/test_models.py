@@ -2,6 +2,7 @@
 TDD tests for shopping models.
 Red → Green → Refactor.
 """
+
 import pytest
 
 from shopping.models import Item, ShoppingList

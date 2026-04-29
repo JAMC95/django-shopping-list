@@ -2,6 +2,7 @@
 DRF serializers — responsible only for data validation and representation
 (Single Responsibility Principle).
 """
+
 from rest_framework import serializers
 
 from .models import Item, ShoppingList
