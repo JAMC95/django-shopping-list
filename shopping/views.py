@@ -11,15 +11,10 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .repositories.shopping_repository import (
-    DjangoItemRepository,
-    DjangoShoppingListRepository,
-)
-from .serializers import (
-    ItemSerializer,
-    ShoppingListCreateSerializer,
-    ShoppingListSerializer,
-)
+from .repositories.shopping_repository import (DjangoItemRepository,
+                                               DjangoShoppingListRepository)
+from .serializers import (ItemSerializer, ShoppingListCreateSerializer,
+                          ShoppingListSerializer)
 from .services.shopping_service import ItemService, ShoppingListService
 
 
