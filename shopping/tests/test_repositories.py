@@ -7,7 +7,9 @@ import pytest
 from django.core.exceptions import ObjectDoesNotExist
 
 from shopping.repositories.shopping_repository import (
-    DjangoItemRepository, DjangoShoppingListRepository)
+    DjangoItemRepository,
+    DjangoShoppingListRepository,
+)
 
 from .factories import ItemFactory, ShoppingListFactory
 

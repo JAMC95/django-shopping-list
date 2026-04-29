@@ -8,8 +8,10 @@ unit-testable with fake/mock repositories.
 
 from django.core.exceptions import ValidationError
 
-from ..repositories.interfaces import (AbstractItemRepository,
-                                       AbstractShoppingListRepository)
+from ..repositories.interfaces import (
+    AbstractItemRepository,
+    AbstractShoppingListRepository,
+)
 from .interfaces import AbstractItemService, AbstractShoppingListService
 
 
