@@ -1,0 +1,68 @@
+# GitHub Copilot instructions for the Django Shopping List project.
+# This file defines the project intent, architectural patterns, and recommended decisions.
+
+project:
+  name: Django Shopping List
+  description: "REST API para gestionar listas de la compra usando Django 4.2, Django REST Framework, principios SOLID y TDD."
+  goals:
+    - "Mantener un código limpio, testable y modular."
+    - "Separar responsabilidades usando repositorios, servicios y views delgados."
+    - "Preservar la arquitectura actual y no romper la contracto de las interfaces existentes."
+    - "Proporcionar soporte Docker para ejecutar el proyecto en cualquier entorno."
+
+style:
+  python:
+    format: black
+    lint: flake8
+    import_order: isort
+  tests:
+    required: true
+    frameworks:
+      - pytest
+      - pytest-django
+      - factory-boy
+
+architecture:
+  patterns:
+    - "Repositorio → Servicio → Vista"
+    - "Dependencia de abstracciones, no de implementaciones concretas"
+    - "Configuración vía variables de entorno usando python-decouple"
+  settings:
+    - "Usar config.settings.development para desarrollo y CI."
+    - "Mantener SECRET_KEY y ALLOWED_HOSTS desde variables de entorno."
+
+docker:
+  support: true
+  files:
+    - Dockerfile
+    - docker-compose.yml
+    - entrypoint.sh
+    - .dockerignore
+  behavior:
+    - "Construir desde python:3.11-slim."
+    - "Instalar dependencias desde requirements/base.txt."
+    - "Ejecutar migraciones al iniciar el contenedor."
+    - "Exponer el puerto 8000."
+
+recommendations:
+  code_changes:
+    - "Si agregas endpoints o modelos, incluye tests para cada caso nuevo."
+    - "No rompas las rutas API existentes."
+    - "Usa serializers para validar datos y mantener la lógica de negocio fuera de las views."
+    - "Evita lógica de negocio dentro de los viewsets."
+  decision_making:
+    - "Prefiere soluciones simples y explícitas sobre implementaciones complejas innecesarias."
+    - "Conserva la consistencia con el estilo y las dependencias actuales."
+    - "Prioriza la estabilidad de CI y los tests verdes antes de aplicar cambios mayores."
+
+ci:
+  workflow: .github/workflows/ci.yml
+  checks:
+    - flake8
+    - black --check
+    - isort --check-only
+    - coverage run -m pytest
+
+notes:
+  - "Este proyecto usa SQLite para desarrollo por defecto."
+  - "No agregar comandos de producción sensibles en la configuración de CI."
