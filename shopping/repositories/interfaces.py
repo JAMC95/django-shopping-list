@@ -5,7 +5,6 @@ By depending on abstractions, services can be tested with mock repositories
 without touching the database.
 """
 from abc import ABC, abstractmethod
-from typing import List, Optional
 
 
 class AbstractShoppingListRepository(ABC):

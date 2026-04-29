@@ -2,10 +2,7 @@
 TDD integration tests for the API views.
 Uses Django test client + real database (pytest-django).
 """
-import json
-
 import pytest
-from django.urls import reverse
 from rest_framework.test import APIClient
 
 from shopping.models import Item, ShoppingList

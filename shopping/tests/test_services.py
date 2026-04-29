@@ -3,7 +3,7 @@ TDD unit tests for the service layer.
 These tests use mock/stub repositories so NO database is required.
 This demonstrates the power of the Dependency Inversion Principle.
 """
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 
 import pytest
 from django.core.exceptions import ObjectDoesNotExist, ValidationError

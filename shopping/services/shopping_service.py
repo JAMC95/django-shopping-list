@@ -5,7 +5,7 @@ Services contain all business rules and depend only on the repository
 interfaces (Dependency Inversion Principle). This makes them fully
 unit-testable with fake/mock repositories.
 """
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ValidationError
 
 from ..repositories.interfaces import AbstractItemRepository, AbstractShoppingListRepository
 from .interfaces import AbstractItemService, AbstractShoppingListService
